@@ -7,11 +7,11 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', (req, res) => {
   // find all products
   try {
-    const product = await Product.findAll({
+    const productData = await Product.findAll({
       include: [{ model: Category }, { model: Tag }, {model: ProductTag}],
       // be sure to include its associated Category and Tag data
     });
-    res.status(200).json(product);
+    res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -22,14 +22,14 @@ router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
   try {
-    const product = await Product.findByPk(req.params.id, {
+    const productData = await Product.findByPk(req.params.id, {
       include: [{ model: Category }, { model: Tag }, {model: ProductTag}],
     });
-    if (!product) {
+    if (!productData) {
       res.status(404).json({ message: 'No product found with that id!' });
       return;
     }
-    res.status(200).json(product);
+    res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -79,7 +79,7 @@ router.put('/:id', (req, res) => {
       // find all associated tags from ProductTag
       return ProductTag.findAll({ where: { product_id: req.params.id } });
     })
-    .then((productTags) => {
+    .then((product) => {
       // get list of current tag_ids
       const productTagIds = productTags.map(({ tag_id }) => tag_id);
       // create filtered list of new tag_ids
@@ -109,7 +109,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
   try {
     const product = await Product.destroy({
