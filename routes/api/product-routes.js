@@ -3,7 +3,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// get all products
+// get all products /WORKS
 router.get('/', async (req, res) => {
   // find all products
   try {
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// get one product
+// get one product /WORKS
 router.get('/:id', async (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
@@ -78,10 +78,12 @@ router.put('/:id', async (req, res) => {
   })
     .then((product) => {
       // find all associated tags from ProductTag
+      console.log(product)
       return ProductTag.findAll({ where: { product_id: req.params.id } });
     })
-    .then((product) => {
+    .then((productTags) => {
       // get list of current tag_ids
+  
       const productTagIds = productTags.map(({ tag_id }) => tag_id);
       // create filtered list of new tag_ids
       const newProductTags = req.body.tagIds
@@ -109,7 +111,7 @@ router.put('/:id', async (req, res) => {
       res.status(400).json(err);
     });
 });
-
+// WORKS
 router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
   try {
