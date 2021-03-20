@@ -6,7 +6,8 @@ This application uses an Express.js APIs that works with Sequelize to interact w
 
 ## Table of Contents
 [Installation](#installation)  
-[Usage](#usage)  
+[Usage](#usage)
+[Demonstration](#demonstration)  
 [Contributing](#contributing)  
 [Tests](#tests)  
 [Questions](#questions)  
@@ -28,6 +29,9 @@ After forking this repo:
 ## Usage
 Users can update an eCommerce database with inventory information. With this app, the user can find, create, update, and delete data pertaining to a product, and that product's information like category and tag id. 
 
+## Demonstration
+[Watch the demo here](https://drive.google.com/file/d/18iuzSmY45fXuzHsW1S_xORRR0pS5g6fJ/view)
+
 ## Contributing
 Please email me if you would like to contribute
 
@@ -43,4 +47,4 @@ Personal GitHub Page: [github.com/Tianwes](https://github.com/Tianwes)
 This application is covered under the MIT license.
 To find out more about the MIT license, click [here](https://opensource.org/licenses/MIT)
 
-MIT © 2021 [Tianwes](https://github.com/Tianwes)
+MIT © 2021 [Tianwes](https://github.com/Tianwes) :)
